@@ -1,0 +1,31 @@
+======================== TEMA 1 PROTOCOALE DE COMUNICATIE =========================|
+======================== RAZVAN-ALEXANDRU NICU 323 CB==============================|
+================ IMPLEMENTAREA UNUI PROTOCOL CU FEREASTRA GLISANTA ================|
+                                                                                   |
+	Pentru inceput, in implementare am avut nevoie de o structura in care          |
+mi-am stocat informatiile necesare care trebuie transmise catre reciever.          |
+Pentru a evita trimiterea unui cadru initial al carui continut sa ofere informatii |
+cu privire la numele fisierului de output, precum si a unor informatii legate de   |
+dimensiunea ferestrei si alti parametri necesari transmiterii datelor, am inclus   |
+aceste informatii in fiecare cadru, pentru a le putea folosi odata cu sosirea      |
+acestora. (La sosirea primului cadru de informatii voi afla si informatii precum   |
+numele fisierului, numarul total de cadre ce urmeaza a-mi fi livrate, precum si    |
+dimensiunea ferestrei). In cazul in care as fi trimis un cadru initial si as fi    |
+facut STOP and WAIT pentru a fi sigur ca va ajunge la reciever, as fi pierdut      |
+extrem de mult timp.                                                               |  
+	Problema pierderii cadrelor, precum si cea a reordonarii m-a pus in ipostaza   |
+de a lua o decizie cu privire la o implementare eficienta a acestui protocol.      |
+Am ales sa folosesc o structura, mai exact un vector de cadre, in care voi stoca,  |
+atat pentru sender, cat si pentru reciever, cadrele ce sunt transmise.             |
+Aloc, de altfel, si doi vectori de confirmari, continand valori de 0 si 1 (0 - nu  |
+am primit inca ACK, si 1 - am primit ACK). Transmiterea informatiilor se fac atunci|
+cand ambii vectori (si cel din reciever, si cel din sender) sunt completati cu 1   |
+(am numai cadre pentru care am primit un ACK pozitiv).                             |
+	Implementarea ferestrei glisante am facut-o pe baza abordarii din cadrul labo- |
+ratorului.                                                                         |
+	Implementarea gestionarii coruperilor de date am facut-o cu ajutorul unei      |
+functii ce imi calculeaza checksumul pe tot payloadul din msg, pe care apoi il in- |
+clud in acesta.                                                                    |
+                                                                                   |
+===================================================================================|
+===================================================================================|
